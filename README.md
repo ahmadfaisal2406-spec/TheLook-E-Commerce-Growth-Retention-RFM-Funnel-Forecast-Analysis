@@ -80,7 +80,6 @@ Menganalisis data clickstream dari tabel `events` untuk melacak perjalanan user 
 3. Tambahkan opsi **e-wallet dan Quick Payment** untuk memperluas pilihan pembayaran
 
 ![Funnel Dashboard](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Funnel%20Over%20View.png)
-![Funnel Dashboard](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Funnel%20by%20source.png)
 
 ---
 
@@ -175,8 +174,8 @@ thelook-ecommerce-analytics/
 
 ## 👤 Author
 
-**[Nama Kamu]**  
+**[Achmad Faishal]**  
 Program Studi Ekonomi Pembangunan — UPN "Veteran" Yogyakarta  
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](GANTI-DENGAN-LINK-LINKEDIN-MU)
-[![Looker Studio](https://img.shields.io/badge/Dashboard-Live-green)](GANTI-DENGAN-LINK-LOOKER-MU)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://datastudio.google.com/s/uaeQ4tKYuK0)
+[![Looker Studio](https://img.shields.io/badge/Dashboard-Live-green)](https://www.linkedin.com/in/achmad-faishal-062313274/)
