@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheLook E-Commerce Analytics</title>
+    <meta name="description" content="End-to-end analytics using thelook_ecommerce dataset.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">TheLook <span>Analytics</span></div>
+            <div class="nav-links">
+                <a href="#growth">Growth</a>
+                <a href="#funnel">Funnel</a>
+                <a href="#forecast">Forecast</a>
+                <a href="#recommendations">Plan</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-subtitle">Data Analyst Portfolio</div>
+            <h1 class="hero-title">End-To-End <span class="highlight">E-Commerce</span> Analytics</h1>
+            <p class="hero-desc">I help uncover insights through data. This project tracks over $462K in monthly GMV using BigQuery, SQL, and Python.</p>
+            <div class="cta-group">
+                <a href="https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-chart-pie"></i> View Live Dashboard
+                </a>
+                <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> Repository
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="growth" class="section bg-surface">
+        <div class="container">
+            <div class="split-layout">
+                <div class="split-text">
+                    <div class="section-label">Milestone 1</div>
+                    <h2 class="section-title">Business Growth &amp; Cohort</h2>
+                    <p class="lead">GMV skyrocketed by over <strong>120,000%</strong> from January 2019 to May 2026.</p>
+                    <p class="text-muted">Interestingly, the Average Order Value (AOV) remained stagnant at $80–90. The massive growth was driven entirely by an influx of new buyers rather than increased spending per transaction.</p>
+                    
+                    <div class="feature-highlight mt-4">
+                        <h4>The Onboarding Crisis</h4>
+                        <p class="text-muted">Month 1 retention is only 1-2%. Almost 98% of users buy once and never return. However, the 2% that stay remain highly loyal up to month 10, proving Product-Market Fit exists.</p>
+                    </div>
+                </div>
+                <div class="split-visuals">
+                    <div class="image-card">
+                        <img src="assets/Growth GMV.png" alt="GMV Growth Chart" loading="lazy">
+                        <div class="image-caption">Total GMV Growth</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="assets/Cohort Retention.png" alt="Cohort Retention Heatmap" loading="lazy">
+                        <div class="image-caption">Cohort Retention Heatmap</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="funnel" class="section">
+        <div class="container">
+            <div class="split-layout reverse">
+                <div class="split-text">
+                    <div class="section-label">Milestone 2</div>
+                    <h2 class="section-title">Conversion Funnel</h2>
+                    <p class="lead">Analyzing clickstream data to trace the user journey.</p>
+                    
+                    <ul class="stats-list mt-4">
+                        <li>
+                            <div class="stat-value">57.9%</div>
+                            <div class="stat-desc">Drop-off rate from Cart to Purchase. Friction is concentrated at checkout.</div>
+                        </li>
+                        <li>
+                            <div class="stat-value">42.7%</div>
+                            <div class="stat-desc">Cart-to-purchase conversion from YouTube. Strongest purchase intent.</div>
+                        </li>
+                        <li>
+                            <div class="stat-value">81.5k</div>
+                            <div class="stat-desc">Purchases driven by Email marketing, making it the top transaction channel.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="split-visuals">
+                    <div class="image-card">
+                        <img src="assets/Funnel Over View.png" alt="Funnel Overview" loading="lazy">
+                        <div class="image-caption">Funnel Overview</div>
+                    </div>
+                    <div class="image-card">
+                        <img src="assets/Funnel by source.png" alt="Funnel by Traffic Source" loading="lazy">
+                        <div class="image-caption">Funnel by Source</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="forecast" class="section bg-surface">
+        <div class="container">
+            <div class="split-layout">
+                <div class="split-text">
+                    <div class="section-label">Milestone 3</div>
+                    <h2 class="section-title">GMV Forecasting</h2>
+                    <p class="lead">Projecting the next 6 months using Facebook Prophet.</p>
+                    <p class="text-muted">The model was trained on 89 months of historical data. It predicts an average of <strong>$350,406/month</strong> for the June - November 2026 horizon, representing a 10.6% increase.</p>
+                    
+                    <div class="feature-highlight mt-4">
+                        <h4>Seasonality Trends</h4>
+                        <p class="text-muted"><strong>Peak Season:</strong> April - May. Inventory should be scaled up aggressively.<br>
+                        <strong>Low Season:</strong> June - July &amp; November. Ad spend should be conserved during these months.</p>
+                    </div>
+                </div>
+                <div class="split-visuals">
+                    <div class="image-card">
+                        <img src="assets/Forecasting.png" alt="GMV Forecast Chart" loading="lazy">
+                        <div class="image-caption">6-Month GMV Forecast</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recommendations" class="section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-label">Conclusion</div>
+                <h2 class="section-title">Action Plan</h2>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Loyalty &amp; Onboarding</h3>
+                    <p class="text-muted">Implement an aggressive email onboarding sequence targeting the 98% initial churn rate. Reduce month-1 churn to below 90%.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <h3>Optimize Budget</h3>
+                    <p class="text-muted">Shift advertising dollars away from the identified low-season dips and double down right before peak spending periods.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-shopping-basket"></i></div>
+                    <h3>Boost AOV</h3>
+                    <p class="text-muted">Introduce smart product bundling and minimum-spend thresholds for free shipping to break the stagnant $83 AOV ceiling.</p>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 80px;">
+                <h3 style="margin-bottom: 1rem; text-transform: uppercase;">Technical Skills</h3>
+                <div class="tech-grid" style="justify-content: center;">
+                    <div class="tech-item">SQL</div>
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">BigQuery</div>
+                    <div class="tech-item">FB Prophet</div>
+                    <div class="tech-item">Looker Studio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="runbook" class="section bg-surface">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-label">Documentation</div>
+                <h2 class="section-title">Runbook</h2>
+            </div>
+            
+            <div class="runbook-content">
+                <h1 class="runbook-h1">📦 TheLook E-Commerce: End-to-End Analytics</h1>
+                <blockquote class="runbook-quote">
+                    <strong>Growth · Cohort Retention · Conversion Funnel · GMV Forecasting</strong>
+                </blockquote>
+                
+                <p><a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/The_Look_E-Commerce.pdf" target="_blank" class="btn btn-secondary mt-4 mb-4" style="margin-left: 0;"><i class="fas fa-file-pdf"></i> View Dashboard Preview (PDF)</a></p>
+
+                <h2 class="runbook-h2">📌 Project Overview</h2>
+                <p>Proyek analitik end-to-end menggunakan dataset publik BigQuery <code>thelook_ecommerce</code> yang mensimulasikan platform e-commerce skala besar. Proyek ini mencakup seluruh workflow seorang data analyst — mulai dari eksplorasi data menggunakan SQL di BigQuery, cohort retention analysis, conversion funnel analysis dari data clickstream, time-series forecasting dengan Python, hingga penyajian insight dalam executive dashboard interaktif.</p>
+                <p><strong>🔗 Live Dashboard:</strong> <a href="https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3" target="_blank" class="text-highlight">Lihat di Looker Studio</a></p>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">🛠️ Tools & Tech Stack</h2>
+                <div class="table-responsive">
+                    <table class="runbook-table">
+                        <thead>
+                            <tr><th>Tool</th><th>Kegunaan</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Google BigQuery</td><td>Query & agregasi data skala besar</td></tr>
+                            <tr><td>SQL</td><td>Growth metrics, cohort analysis, funnel analysis</td></tr>
+                            <tr><td>Python — Google Colab</td><td>Time-series forecasting & visualisasi</td></tr>
+                            <tr><td>Facebook Prophet</td><td>Model forecasting GMV bulanan</td></tr>
+                            <tr><td>Looker Studio</td><td>Executive dashboard & komunikasi insight</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">🗃️ Dataset</h2>
+                <div class="table-responsive">
+                    <table class="runbook-table">
+                        <tbody>
+                            <tr><td><strong>Source</strong></td><td><code>bigquery-public-data.thelook_ecommerce</code></td></tr>
+                            <tr><td><strong>Platform</strong></td><td>Google BigQuery Public Dataset</td></tr>
+                            <tr><td><strong>Periode data</strong></td><td>Januari 2019 – Mei 2026</td></tr>
+                            <tr><td><strong>Tabel yang digunakan</strong></td><td><code>order_items</code>, <code>orders</code>, <code>events</code></td></tr>
+                            <tr><td><strong>Volume</strong></td><td>~2.5 juta baris transaksi</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">📊 Milestone & Key Findings</h2>
+
+                <h3 class="runbook-h3">Milestone 1 — Business Growth & Cohort Retention Analysis</h3>
+                <p><strong>Query:</strong> <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone1_business_growth.sql" target="_blank" class="text-highlight"><code>sql/milestone1_business_growth.sql</code></a> · <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone1_cohort_retention.sql" target="_blank" class="text-highlight"><code>sql/milestone1_cohort_retention.sql</code></a></p>
+                <p><strong>Apa yang dianalisis:</strong><br>Menghitung pertumbuhan GMV (Gross Merchandise Value), Average Order Value (AOV), dan Month-over-Month growth rate. Dilanjutkan dengan Cohort Retention Analysis untuk melihat persentase user yang kembali berbelanja di bulan-bulan setelah pembelian pertama mereka.</p>
+                <p><strong>Temuan utama:</strong></p>
+                <ul class="runbook-list">
+                    <li>GMV tumbuh dari <strong>$382/bulan</strong> (Jan 2019) menjadi <strong>$462K/bulan</strong> (Mei 2026) — pertumbuhan lebih dari <strong>120,000%</strong></li>
+                    <li>Average Order Value stagnan di kisaran <strong>$80–90</strong> sepanjang periode — pertumbuhan omset murni didorong oleh <strong>penambahan volume buyer</strong>, bukan kenaikan harga</li>
+                    <li>Retensi bulan pertama hanya <strong>1–2%</strong>, mengindikasikan <strong>krisis onboarding</strong>: hampir 98% pelanggan hanya belanja sekali lalu tidak kembali</li>
+                    <li>Kelompok kecil yang bertahan (1–2%) terbukti sangat loyal hingga bulan ke-10, menandakan <strong>Product-Market Fit yang valid</strong> namun belum dikomunikasikan dengan baik ke mayoritas user baru</li>
+                </ul>
+                <img src="assets/Cohort Retention.png" alt="Cohort Heatmap" class="runbook-img">
+
+                <hr class="runbook-hr">
+
+                <h3 class="runbook-h3">Milestone 2 — User Conversion Funnel Analysis</h3>
+                <p><strong>Query:</strong> <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone2_funnel_overview.sql" target="_blank" class="text-highlight"><code>sql/milestone2_funnel_overview.sql</code></a> · <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone2_funnel_by_traffic_source.sql" target="_blank" class="text-highlight"><code>sql/milestone2_funnel_by_traffic_source.sql</code></a></p>
+                <p><strong>Apa yang dianalisis:</strong><br>Menganalisis data clickstream dari tabel <code>events</code> untuk melacak perjalanan user dari halaman produk → keranjang → pembelian. Dilengkapi dengan breakdown conversion rate per traffic source untuk mengidentifikasi channel paling efisien.</p>
+                <p><strong>Temuan utama:</strong></p>
+                <div class="table-responsive">
+                    <table class="runbook-table">
+                        <thead>
+                            <tr><th>Tahap Funnel</th><th>Sessions</th><th>% dari Titik Masuk</th><th>Drop-off</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Product Page</td><td>681,667</td><td>100%</td><td>—</td></tr>
+                            <tr><td>Add to Cart</td><td>432,099</td><td>63.39%</td><td>36.61%</td></tr>
+                            <tr><td>Purchase</td><td>181,667</td><td>26.65%</td><td><strong>57.96%</strong></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="runbook-list">
+                    <li><strong>Drop-off terbesar terjadi di Cart → Purchase (57.96%)</strong> — friction ada di halaman checkout, bukan di halaman produk</li>
+                    <li>Kemungkinan penyebab: ongkos kirim yang muncul mendadak di akhir, proses checkout yang terlalu panjang, atau pilihan metode pembayaran yang terbatas</li>
+                    <li><strong>YouTube</strong> memiliki cart-to-purchase conversion tertinggi (<strong>42.74%</strong>) meski volume sessions-nya hanya sepertiga Email — mengindikasikan purchase intent yang lebih kuat</li>
+                    <li><strong>Email</strong> adalah channel dengan volume transaksi terbesar (<strong>81,549 purchased</strong>) — kandidat utama untuk implementasi cart abandonment automation</li>
+                </ul>
+                <p><strong>Rekomendasi:</strong></p>
+                <ol class="runbook-list">
+                    <li>Implementasi <strong>cart abandonment email</strong> dalam 1–2 jam setelah user meninggalkan keranjang, dengan insentif voucher gratis ongkir</li>
+                    <li>Pertimbangkan <strong>Guest Checkout</strong> untuk mengurangi friction di tahap registrasi</li>
+                    <li>Tambahkan opsi <strong>e-wallet dan Quick Payment</strong> untuk memperluas pilihan pembayaran</li>
+                </ol>
+                <img src="assets/Funnel Over View.png" alt="Funnel Dashboard" class="runbook-img">
+                <img src="assets/Funnel by source.png" alt="Funnel Dashboard" class="runbook-img">
+
+                <hr class="runbook-hr">
+
+                <h3 class="runbook-h3">Milestone 3 — GMV Forecasting dengan Time-Series Model</h3>
+                <p><strong>Notebook:</strong> <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/The_Look_E_Commerce_Forecasting_GMV.ipynb" target="_blank" class="text-highlight"><code>notebooks/milestone3_gmv_forecasting.ipynb</code></a></p>
+                <p><strong>Apa yang dianalisis:</strong><br>Menarik data agregasi bulanan dari BigQuery ke Google Colab, lalu menerapkan model <strong>Facebook Prophet</strong> untuk memproyeksikan GMV 6 bulan ke depan. Dilengkapi dengan decomposition analysis untuk memahami komponen trend dan seasonality.</p>
+                <p><strong>Model & Parameter:</strong></p>
+                <ul class="runbook-list">
+                    <li>Model: Facebook Prophet</li>
+                    <li>Training data: 89 bulan (Jan 2019 – Mei 2026)</li>
+                    <li><code>yearly_seasonality = True</code></li>
+                    <li><code>changepoint_prior_scale = 0.05</code></li>
+                    <li>Forecast horizon: Jun – Nov 2026</li>
+                    <li>Confidence interval: 95%</li>
+                </ul>
+                <p><strong>Hasil Forecast:</strong></p>
+                <div class="table-responsive">
+                    <table class="runbook-table">
+                        <thead>
+                            <tr><th>Bulan</th><th>Forecast GMV</th><th>Lower Bound</th><th>Upper Bound</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Jun 2026</td><td>$323,322</td><td>$301,414</td><td>$343,578</td></tr>
+                            <tr><td>Jul 2026</td><td>$331,799</td><td>$309,853</td><td>$353,218</td></tr>
+                            <tr><td>Aug 2026</td><td>$346,765</td><td>$326,753</td><td>$368,871</td></tr>
+                            <tr><td>Sep 2026</td><td>$354,523</td><td>$332,077</td><td>$373,626</td></tr>
+                            <tr><td>Oct 2026</td><td>$369,132</td><td>$347,850</td><td>$390,936</td></tr>
+                            <tr><td>Nov 2026</td><td>$376,897</td><td>$353,809</td><td>$397,807</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <ul class="runbook-list">
+                    <li>Rata-rata GMV forecast Jun–Nov 2026: <strong>$350,406/bulan</strong> (+10.6% vs baseline 6 bulan terakhir)</li>
+                    <li>Confidence interval yang sempit mengindikasikan pola historis yang konsisten dan model yang reliable</li>
+                </ul>
+                <p><strong>Seasonality Pattern:</strong></p>
+                <ul class="runbook-list">
+                    <li><strong>Peak season:</strong> April–Mei (GMV di atas rata-rata tren) → rekomendasi: tingkatkan stok di Februari</li>
+                    <li><strong>Low season:</strong> Juni–Juli dan November → rekomendasi: kurangi budget iklan, simpan untuk periode Desember–Januari</li>
+                </ul>
+                <img src="assets/Forecasting.png" alt="Forecast Chart" class="runbook-img">
+
+                <hr class="runbook-hr">
+
+                <h3 class="runbook-h3">Milestone 4 — Executive Dashboard</h3>
+                <p><strong>Live:</strong> <a href="https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3" target="_blank" class="text-highlight">🔗 Lihat Dashboard di Looker Studio</a></p>
+                <p>Dashboard interaktif 3 halaman yang menyederhanakan seluruh analisis ke dalam format yang dapat dikonsumsi oleh non-technical stakeholders, dilengkapi dengan filter tanggal dan narasi insight bisnis.</p>
+                <div class="table-responsive">
+                    <table class="runbook-table">
+                        <thead>
+                            <tr><th>Halaman</th><th>Konten</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Growth & Retention</td><td>GMV trend, MoM growth rate, AOV, cohort heatmap</td></tr>
+                            <tr><td>Funnel Analysis</td><td>Conversion funnel, drop-off rate, breakdown per traffic source</td></tr>
+                            <tr><td>Forecast</td><td>Actual vs forecast chart, tabel proyeksi 6 bulan, seasonality insight</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">💡 Strategic Recommendations</h2>
+                <ol class="runbook-list">
+                    <li><strong>Loyalty program</strong> — Alokasikan sebagian profit Mei 2026 untuk membangun sistem onboarding dan email sequence pasca-pembelian pertama. Target: menurunkan churn rate dari 98% menjadi di bawah 90% dalam 3 bulan.</li>
+                    <li><strong>Budget optimization</strong> — Kurangi spend iklan di Juni–Juli dan November (low season). Tumpahkan anggaran di Desember–Januari saat konsumen paling aktif.</li>
+                    <li><strong>AOV improvement</strong> — Implementasi product bundling dan promo gratis ongkir dengan minimum belanja untuk mendorong AOV dari $83 ke $95+.</li>
+                    <li><strong>Channel reallocation</strong> — YouTube menunjukkan kualitas traffic terbaik. Pertimbangkan peningkatan budget YouTube Ads secara bertahap sambil memperkuat SEO untuk menekan Customer Acquisition Cost (CAC).</li>
+                </ol>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">📁 Repository Structure</h2>
+                <pre class="runbook-code"><code>thelook-ecommerce-analytics/
+├── README.md
+├── sql/
+│   ├── milestone1_business_growth.sql
+│   ├── milestone1_cohort_retention.sql
+│   ├── milestone2_funnel_overview.sql
+│   └── milestone2_funnel_by_traffic_source.sql
+├── notebooks/
+│   └── milestone3_gmv_forecasting.ipynb
+├── data/
+│   ├── growth_monthly.csv
+│   ├── cohort_retention.csv
+│   ├── funnel_overview.csv
+│   ├── funnel_by_traffic_source.csv
+│   └── forecast_looker.csv
+└── assets/
+    ├── dashboard_growth.png
+    ├── dashboard_funnel.png
+    └── dashboard_forecast.png</code></pre>
+
+                <hr class="runbook-hr">
+
+                <h2 class="runbook-h2">👤 Author</h2>
+                <p><strong>[Achmad Faishal]</strong><br>Program Studi Ekonomi Pembangunan — UPN "Veteran" Yogyakarta</p>
+                <div class="mt-4">
+                    <a href="https://www.linkedin.com/in/achmad-faishal-062313274/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue" alt="LinkedIn"></a>
+                    <a href="https://datastudio.google.com/s/uaeQ4tKYuK0" target="_blank"><img src="https://img.shields.io/badge/Dashboard-Live-green" alt="Looker Studio"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Achmad Faishal. Data Analyst Portfolio.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/achmad-faishal-062313274/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
