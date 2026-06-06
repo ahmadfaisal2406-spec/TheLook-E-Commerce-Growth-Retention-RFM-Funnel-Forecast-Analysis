@@ -39,7 +39,7 @@ Proyek analitik end-to-end menggunakan dataset publik BigQuery `thelook_ecommerc
 
 ### Milestone 1 — Business Growth & Cohort Retention Analysis
 
-**Query:** [`sql/milestone1_business_growth.sql`](sql/milestone1_business_growth.sql) · [`sql/milestone1_cohort_retention.sql`](sql/milestone1_cohort_retention.sql)
+**Query:** [`sql/milestone1_business_growth.sql`](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone1_business_growth.sql) · [`sql/milestone1_cohort_retention.sql`]([sql/milestone1_cohort_retention.sql](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone1_cohort_retention.sql))
 
 **Apa yang dianalisis:**
 Menghitung pertumbuhan GMV (Gross Merchandise Value), Average Order Value (AOV), dan Month-over-Month growth rate. Dilanjutkan dengan Cohort Retention Analysis untuk melihat persentase user yang kembali berbelanja di bulan-bulan setelah pembelian pertama mereka.
