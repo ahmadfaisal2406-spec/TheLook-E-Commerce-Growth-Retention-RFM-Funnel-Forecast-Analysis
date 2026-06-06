@@ -7,7 +7,7 @@
 
 Proyek analitik end-to-end menggunakan dataset publik BigQuery `thelook_ecommerce` yang mensimulasikan platform e-commerce skala besar. Proyek ini mencakup seluruh workflow seorang data analyst — mulai dari eksplorasi data menggunakan SQL di BigQuery, cohort retention analysis, conversion funnel analysis dari data clickstream, time-series forecasting dengan Python, hingga penyajian insight dalam executive dashboard interaktif.
 
-**🔗 Live Dashboard:** [Lihat di Looker Studio](GANTI-DENGAN-LINK-LOOKER-MU)
+**🔗 Live Dashboard:** [Lihat di Looker Studio](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
 
 ---
 
