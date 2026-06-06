@@ -1,7 +1,7 @@
 # 📦 TheLook E-Commerce: End-to-End Analytics
 > **Growth · Cohort Retention · Conversion Funnel · GMV Forecasting**
 
-![Dashboard Preview](assets/dashboard_growth.png)
+![Dashboard Preview](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/The_Look_E-Commerce.pdf)
 
 ## 📌 Project Overview
 
@@ -50,7 +50,7 @@ Menghitung pertumbuhan GMV (Gross Merchandise Value), Average Order Value (AOV),
 - Retensi bulan pertama hanya **1–2%**, mengindikasikan **krisis onboarding**: hampir 98% pelanggan hanya belanja sekali lalu tidak kembali
 - Kelompok kecil yang bertahan (1–2%) terbukti sangat loyal hingga bulan ke-10, menandakan **Product-Market Fit yang valid** namun belum dikomunikasikan dengan baik ke mayoritas user baru
 
-![Cohort Heatmap](assets/dashboard_growth.png)
+![Cohort Heatmap](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Cohort%20Retention.png)
 
 ---
 
@@ -79,13 +79,14 @@ Menganalisis data clickstream dari tabel `events` untuk melacak perjalanan user 
 2. Pertimbangkan **Guest Checkout** untuk mengurangi friction di tahap registrasi
 3. Tambahkan opsi **e-wallet dan Quick Payment** untuk memperluas pilihan pembayaran
 
-![Funnel Dashboard](assets/dashboard_funnel.png)
+![Funnel Dashboard](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Funnel%20Over%20View.png)
+![Funnel Dashboard](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Funnel%20by%20source.png)
 
 ---
 
 ### Milestone 3 — GMV Forecasting dengan Time-Series Model
 
-**Notebook:** [`notebooks/milestone3_gmv_forecasting.ipynb`](notebooks/milestone3_gmv_forecasting.ipynb)
+**Notebook:** [`notebooks/milestone3_gmv_forecasting.ipynb`](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/The_Look_E_Commerce_Forecasting_GMV.ipynb)
 
 **Apa yang dianalisis:**
 Menarik data agregasi bulanan dari BigQuery ke Google Colab, lalu menerapkan model **Facebook Prophet** untuk memproyeksikan GMV 6 bulan ke depan. Dilengkapi dengan decomposition analysis untuk memahami komponen trend dan seasonality.
@@ -116,13 +117,13 @@ Menarik data agregasi bulanan dari BigQuery ke Google Colab, lalu menerapkan mod
 - **Peak season:** April–Mei (GMV di atas rata-rata tren) → rekomendasi: tingkatkan stok di Februari
 - **Low season:** Juni–Juli dan November → rekomendasi: kurangi budget iklan, simpan untuk periode Desember–Januari
 
-![Forecast Chart](assets/dashboard_forecast.png)
+![Forecast Chart](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Forecasting.png)
 
 ---
 
 ### Milestone 4 — Executive Dashboard
 
-**Live:** [🔗 Lihat Dashboard di Looker Studio](GANTI-DENGAN-LINK-LOOKER-MU)
+**Live:** [🔗 Lihat Dashboard di Looker Studio](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
 
 Dashboard interaktif 3 halaman yang menyederhanakan seluruh analisis ke dalam format yang dapat dikonsumsi oleh non-technical stakeholders, dilengkapi dengan filter tanggal dan narasi insight bisnis.
 
