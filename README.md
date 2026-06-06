@@ -1,7 +1,7 @@
 # 📦 TheLook E-Commerce: End-to-End Analytics
 > **Growth · Cohort Retention · Conversion Funnel · GMV Forecasting**
 
-![Dashboard Preview](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/The_Look_E-Commerce%20(1).pdf)
+![Dashboard Preview](https://ahmadfaisal2406-spec.github.io/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/#recommendations)
 
 ## 📌 Project Overview
 
