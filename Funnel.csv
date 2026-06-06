@@ -1,0 +1,4 @@
+funnel_stage,stage_order,session_count,pct_of_top,drop_off_rate_pct
+Product Page,1,681667,100.0,
+Add to Cart,2,432099,63.39,36.61
+Purchase,3,181667,26.65,57.96
