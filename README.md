@@ -80,7 +80,8 @@ Menganalisis data clickstream dari tabel `events` untuk melacak perjalanan user 
 3. Tambahkan opsi **e-wallet dan Quick Payment** untuk memperluas pilihan pembayaran
 
 ![Funnel Dashboard](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Funnel%20Over%20View.png)
-
+![Funnel by source]
+(https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/Forecasting.png)
 ---
 
 ### Milestone 3 — GMV Forecasting dengan Time-Series Model
