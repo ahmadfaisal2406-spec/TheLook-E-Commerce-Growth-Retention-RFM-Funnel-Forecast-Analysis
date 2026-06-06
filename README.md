@@ -56,7 +56,7 @@ Menghitung pertumbuhan GMV (Gross Merchandise Value), Average Order Value (AOV),
 
 ### Milestone 2 — User Conversion Funnel Analysis
 
-**Query:** [`sql/milestone2_funnel_overview.sql`](sql/milestone2_funnel_overview.sql) · [`sql/milestone2_funnel_by_traffic_source.sql`](sql/milestone2_funnel_by_traffic_source.sql)
+**Query:** [`sql/milestone2_funnel_overview.sql`](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone2_funnel_overview.sql) · [`sql/milestone2_funnel_by_traffic_source.sql`](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-Funnel-Forecast-Analysis/blob/main/milestone2_funnel_by_traffic_source.sql)
 
 **Apa yang dianalisis:**
 Menganalisis data clickstream dari tabel `events` untuk melacak perjalanan user dari halaman produk → keranjang → pembelian. Dilengkapi dengan breakdown conversion rate per traffic source untuk mengidentifikasi channel paling efisien.
