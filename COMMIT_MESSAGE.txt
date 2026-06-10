@@ -1,0 +1,8 @@
+refactor: improve ecommerce analytics portfolio repository
+
+- restructure repository into sql, notebooks, data, assets, docs, and scripts
+- rewrite README with clearer business framing and marketplace-oriented insight
+- add metric definitions and project limitations
+- improve funnel methodology using timestamp-ordered strict funnel logic
+- add forecasting evaluation template with MAE, RMSE, MAPE, and naive baseline
+- add optional marketplace segmentation SQL templates
