@@ -1,5 +1,5 @@
 -- ============================================================
--- OPTIONAL: RFM Customer Segmentation
+-- Milestone 4.3: RFM Customer Segmentation
 -- Dataset: bigquery-public-data.thelook_ecommerce
 -- Purpose:
 --   Segment customers based on recency, frequency, and monetary value.
@@ -17,7 +17,8 @@ WITH valid_order_items AS (
 ),
 
 analysis_date AS (
-  SELECT DATE_ADD(MAX(order_date), INTERVAL 1 DAY) AS snapshot_date
+  SELECT
+    DATE_ADD(MAX(order_date), INTERVAL 1 DAY) AS snapshot_date
   FROM valid_order_items
 ),
 
@@ -39,7 +40,8 @@ rfm_score AS (
     frequency_orders,
     monetary_value,
 
-    -- Lower recency is better, so ordering is ASC.
+    -- Lower recency is better.
+    -- DESC gives older customers lower scores and recent customers higher scores.
     NTILE(5) OVER (ORDER BY recency_days DESC) AS recency_score,
 
     -- Higher frequency and monetary value are better.
@@ -53,12 +55,18 @@ rfm_segment AS (
     *,
     recency_score + frequency_score + monetary_score AS total_rfm_score,
     CASE
-      WHEN recency_score >= 4 AND frequency_score >= 4 AND monetary_score >= 4 THEN 'Champions'
-      WHEN recency_score >= 4 AND frequency_score >= 3 THEN 'Loyal Customers'
-      WHEN recency_score >= 4 AND frequency_score <= 2 THEN 'New / Promising'
-      WHEN recency_score BETWEEN 2 AND 3 AND frequency_score >= 3 THEN 'Potential Loyalists'
-      WHEN recency_score <= 2 AND frequency_score >= 3 THEN 'At Risk'
-      WHEN recency_score <= 2 AND frequency_score <= 2 THEN 'Dormant'
+      WHEN recency_score >= 4 AND frequency_score >= 4 AND monetary_score >= 4
+        THEN 'Champions'
+      WHEN recency_score >= 4 AND frequency_score >= 3
+        THEN 'Loyal Customers'
+      WHEN recency_score >= 4 AND frequency_score <= 2
+        THEN 'New / Promising'
+      WHEN recency_score BETWEEN 2 AND 3 AND frequency_score >= 3
+        THEN 'Potential Loyalists'
+      WHEN recency_score <= 2 AND frequency_score >= 3
+        THEN 'At Risk'
+      WHEN recency_score <= 2 AND frequency_score <= 2
+        THEN 'Dormant'
       ELSE 'Regular Customers'
     END AS customer_segment
   FROM rfm_score
@@ -70,7 +78,8 @@ SELECT
   ROUND(AVG(recency_days), 2) AS avg_recency_days,
   ROUND(AVG(frequency_orders), 2) AS avg_frequency_orders,
   ROUND(AVG(monetary_value), 2) AS avg_monetary_value,
-  ROUND(SUM(monetary_value), 2) AS total_monetary_value
+  ROUND(SUM(monetary_value), 2) AS total_monetary_value,
+  ROUND(AVG(total_rfm_score), 2) AS avg_total_rfm_score
 FROM rfm_segment
 GROUP BY customer_segment
 ORDER BY total_monetary_value DESC;

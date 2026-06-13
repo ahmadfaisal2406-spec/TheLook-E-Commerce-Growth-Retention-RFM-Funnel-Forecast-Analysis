@@ -232,9 +232,13 @@ thelook-ecommerce-analytics/
 │   ├── milestone2_funnel_overview.sql
 │   ├── milestone2_funnel_by_traffic_source.sql
 │   ├── milestone3_gmv_monthly_extract.sql
-│   ├── optional_category_performance.sql
-│   ├── optional_new_vs_returning_buyer.sql
-│   └── optional_rfm_segmentation.sql
+│   ├── milestone4_category_gmv_aov.sql
+│   ├── milestone4_new_vs_returning_buyer.sql
+│   ├── milestone4_rfm_customer_segmentation.sql
+│   ├── milestone5_cohort_retention_by_source.sql
+│   ├── milestone5_cart_abandonment_by_source.sql
+│   └── milestone5_category_repeat_purchase.sql
+│
 ├── notebooks/
 │   ├── milestone3_gmv_forecasting.ipynb
 │   └── forecasting_evaluation_template.py

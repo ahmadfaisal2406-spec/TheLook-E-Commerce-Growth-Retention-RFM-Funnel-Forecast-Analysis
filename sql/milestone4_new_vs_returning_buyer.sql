@@ -1,8 +1,8 @@
 -- ============================================================
--- OPTIONAL: New vs Returning Buyer GMV Contribution
+-- Milestone 4.2: New vs Returning Buyer GMV Contribution
 -- Dataset: bigquery-public-data.thelook_ecommerce
 -- Purpose:
---   Separate monthly GMV from new buyers and returning buyers.
+--   Compare monthly GMV contribution from new buyers and returning buyers.
 -- ============================================================
 
 WITH valid_order_items AS (
@@ -47,6 +47,13 @@ SELECT
   total_orders,
   total_gmv,
   ROUND(SAFE_DIVIDE(total_gmv, total_orders), 2) AS avg_order_value,
-  ROUND(SAFE_DIVIDE(total_gmv, unique_buyers), 2) AS gmv_per_buyer
+  ROUND(SAFE_DIVIDE(total_gmv, unique_buyers), 2) AS gmv_per_buyer,
+  ROUND(
+    SAFE_DIVIDE(
+      total_gmv,
+      SUM(total_gmv) OVER (PARTITION BY order_month)
+    ) * 100,
+    2
+  ) AS monthly_gmv_contribution_pct
 FROM buyer_type_gmv
-ORDER BY order_month, buyer_type;
+ORDER BY order_month ASC, buyer_type;
