@@ -1,0 +1,6 @@
+traffic_source,product_sessions,cart_sessions,purchase_sessions,product_view_abandonment_sessions,cart_abandonment_sessions,product_to_cart_rate_pct,cart_to_purchase_rate_pct,product_to_purchase_rate_pct,product_view_abandonment_rate_pct,cart_abandonment_rate_pct
+YouTube,67292,42257,17201,25035,25056,62.8,40.71,25.56,37.2,59.29
+Email,300760,189091,77111,111669,111980,62.87,40.78,25.64,37.13,59.22
+Facebook,67329,42392,17302,24937,25090,62.96,40.81,25.7,37.04,59.19
+Adwords,201306,126306,51660,75000,74646,62.74,40.9,25.66,37.26,59.1
+Organic,33392,21024,8640,12368,12384,62.96,41.1,25.87,37.04,58.9

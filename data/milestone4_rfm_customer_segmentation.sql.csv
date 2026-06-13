@@ -1,0 +1,8 @@
+customer_segment,total_customers,avg_recency_days,avg_frequency_orders,avg_monetary_value,total_monetary_value,avg_total_rfm_score
+Champions,8909,133.37,2.26,249.67,2224354.53,13.54
+Potential Loyalists,15875,500.24,1.59,137.6,2184420.52,9.83
+Dormant,20265,1204.31,1.0,85.59,1734529.78,5.49
+Loyal Customers,11358,154.18,1.26,66.86,759351.14,10.4
+New / Promising,5093,32.4,1.0,88.31,449741.7,9.21
+At Risk,1898,1417.18,2.17,189.62,359891.18,9.27
+Regular Customers,4,424.0,1.0,83.25,332.98,6.5
