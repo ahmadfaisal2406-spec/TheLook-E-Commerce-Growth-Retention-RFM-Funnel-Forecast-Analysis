@@ -289,10 +289,6 @@ Channel recommendations should be treated carefully because this dataset does no
 
 * [`notebooks/milestone3_gmv_forecasting.ipynb`](notebooks/milestone3_gmv_forecasting.ipynb)
 
-**Forecast Evaluation Template:**
-
-* [`notebooks/forecasting_evaluation_template.py`](notebooks/forecasting_evaluation_template.py)
-
 ### What Was Analyzed
 
 Monthly GMV proxy was forecasted using Prophet. The model projects the next six months of GMV and decomposes the time series into trend and seasonality components.
