@@ -89,7 +89,7 @@ Because the dataset doesn't include shipping costs, voucher costs, seller commis
 
 Short answer: yes. GMV trended upward from 2019 through May 2026, with May 2026 being the strongest full month on record.
 
-But what's more interesting is *how* it grew. Average Order Value barely moved — it stayed around **$80–84 the entire time**. So the growth wasn't because customers started spending more per order. It was almost entirely because there were **more customers and more orders**. The basket size didn't change. The business just got more traffic through the door.
+But what's more interesting is *how* it grew. Average Order Value barely moved it stayed around **$80–84 the entire time**. So the growth wasn't because customers started spending more per order. It was almost entirely because there were **more customers and more orders**. The basket size didn't change. The business just got more traffic through the door.
 
 That's not a bad thing, but it does suggest there's an untapped lever here. If you could nudge AOV up even slightly through bundling, free shipping thresholds, or recommendations. The revenue impact would compound across a growing buyer base.
 
@@ -138,7 +138,7 @@ The bigger takeaway here is that different categories need different strategies.
 
 **`sql/milestone4_new_vs_returning_buyer.sql`**
 
-Early in the data, new buyers dominated GMV almost entirely. Over time, returning buyer contribution grew — which is a good sign, it means a portion of the base is actually sticking around.
+Early in the data, new buyers dominated GMV almost entirely. Over time, returning buyer contribution grew which is a good sign, it means a portion of the base is actually sticking around.
 
 But this doesn't resolve the retention problem from Part 2. The returning buyers that exist are probably a surviving subset of a much larger original cohort. The majority of first-time buyers still never come back.
 
@@ -217,7 +217,7 @@ I trained a Prophet model on January 2019, May 2026 monthly GMV and forecasted t
 | Oct 2026 | $369,132 | $347,850 | $390,936 |
 | Nov 2026 | $376,897 | $353,809 | $397,807 |
 
-The trend continues upward — peaking around $377K in November. That's about 80% of the May 2026 actual peak, which suggests the high months are still seasonal exceptions, not the new floor.
+The trend continues upward peaking around $377K in November. That's about 80% of the May 2026 actual peak, which suggests the high months are still seasonal exceptions, not the new floor.
 
 One thing I want to be honest about: a tight confidence interval doesn't automatically mean the model is accurate. The notebook includes backtesting against a naive baseline using MAE, RMSE, and MAPE, because a forecast is only useful if you know how wrong it tends to be.
 
@@ -230,7 +230,7 @@ This should be read as a directional estimate. It doesn't know about upcoming ca
 ## What I'd Actually Recommend (If This Were a Real Business)
 
 **1. Fix retention before scaling acquisition**
-98% of first-time buyers don't come back the next month. A basic post-purchase sequence: Day 1 confirmation with recs, Day 7 voucher, Day 14 reminder — would likely move this more than any amount of new ad spend.
+98% of first-time buyers don't come back the next month. A basic post-purchase sequence: Day 1 confirmation with recs, Day 7 voucher, Day 14 reminder would likely move this more than any amount of new ad spend.
 
 **2. Fix checkout, not traffic**
 The funnel tells you where the problem is: not at product discovery, but at purchase completion. Guest checkout, visible shipping costs, one-click payment for returning users, 30-minute cart abandonment email. These are high-impact, relatively low-cost fixes.
@@ -253,9 +253,9 @@ YouTube's conversion rate looks good in the funnel. But conversion rate alone do
 
 A few honest caveats:
 
-The dataset is simulated — so none of these numbers reflect the actual performance of any real marketplace.
+The dataset is simulated so none of these numbers reflect the actual performance of any real marketplace.
 
-It's also missing a lot of cost-side context: no voucher costs, no shipping fees, no seller commissions, no ad spend, no CAC, no product margin. So GMV here is purely a revenue proxy — you can't infer profitability from it.
+It's also missing a lot of cost-side context: no voucher costs, no shipping fees, no seller commissions, no ad spend, no CAC, no product margin. So GMV here is purely a revenue proxy you can't infer profitability from it.
 
 The checkout drop-off finding is an inference. I can see that people leave between cart and purchase, but the dataset doesn't have detailed checkout step events (payment page, shipping selection, voucher errors). The *cause* of the drop-off is educated speculation, not proven by the data.
 
