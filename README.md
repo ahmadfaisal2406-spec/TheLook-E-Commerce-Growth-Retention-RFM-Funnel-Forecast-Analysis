@@ -85,7 +85,7 @@ Because the dataset doesn't include shipping costs, voucher costs, seller commis
 
 ## Part 1: Is the Business Growing?
 
-**`sql/milestone1_business_growth.sql`**
+**`sql/milestone1_business_growth.sql`**[sql/milestone1_business_growth.sql](sql/milestone1_business_growth.sql)
 
 Short answer: yes. GMV trended upward from 2019 through May 2026, with May 2026 being the strongest full month on record.
 
@@ -100,7 +100,7 @@ That's not a bad thing, but it does suggest there's an untapped lever here. If y
 
 ## Part 2: Do Customers Actually Come Back?
 
-**`sql/milestone1_cohort_retention.sql`**
+**`sql/milestone1_cohort_retention.sql`**[sql/milestone1_cohort_retention.sql](sql/milestone1_cohort_retention.sql)
 
 This one was a bit uncomfortable to look at.
 
@@ -118,7 +118,7 @@ At 1.30%, the business is essentially running an acquisition-only model. Which w
 
 ## Part 3: Which Categories and Genders Are Driving Performance?
 
-**`sql/milestone4_category_gmv_aov.sql`**
+**`sql/milestone4_category_gmv_aov.sql`** [sql/milestone4_category_gmv_aov.sql](sql/milestone4_category_gmv_aov.sql)
 
 Not all categories behave the same way, and I think that matters a lot for how the business should prioritize:
 
@@ -136,7 +136,7 @@ The bigger takeaway here is that different categories need different strategies.
 
 ## Part 4: New Buyers vs. Returning Buyers
 
-**`sql/milestone4_new_vs_returning_buyer.sql`**
+**`sql/milestone4_new_vs_returning_buyer.sql`**[sql/milestone4_new_vs_returning_buyer.sql](sql/milestone4_new_vs_returning_buyer.sql)
 
 Early in the data, new buyers dominated GMV almost entirely. Over time, returning buyer contribution grew which is a good sign, it means a portion of the base is actually sticking around.
 
@@ -150,7 +150,7 @@ What this tells me is that the loyalty loop *can* exist — it just only activat
 
 ## Part 5: Which Customers Are Worth the Most? (RFM)
 
-**`sql/milestone4_rfm_customer_segmentation.sql`**
+**`sql/milestone4_rfm_customer_segmentation.sql`**[sql/milestone4_rfm_customer_segmentation.sql](sql/milestone4_rfm_customer_segmentation.sql)
 
 I segmented customers using RFM — Recency, Frequency, and Monetary value, into seven buckets:
 
@@ -180,7 +180,8 @@ My take on how to approach each:
 
 ## Part 6: Where Are Users Dropping Off?
 
-**`sql/milestone2_funnel_overview.sql`** · **`sql/milestone2_funnel_by_traffic_source.sql`**
+**`sql/milestone2_funnel_overview.sql`**[sql/milestone2_funnel_overview.sql](sql/milestone2_funnel_overview.sql)
+· **`sql/milestone2_funnel_by_traffic_source.sql`**[sql/milestone2_funnel_by_traffic_source.sql](sql/milestone2_funnel_by_traffic_source.sql)
 
 I used strict session-level funnel logic: a session only counts as converted if the user moves through the stages in the right order: product page → add to cart → purchase.
 
@@ -204,7 +205,7 @@ On traffic sources: Email drove the most sessions, YouTube showed stronger purch
 
 ## Part 7: Where Is GMV Headed?
 
-**`notebooks/milestone3_gmv_forecasting.ipynb`**
+**`notebooks/milestone3_gmv_forecasting.ipynb`** [notebooks/milestone3_gmv_forecasting.ipynb](notebooks/milestone3_gmv_forecasting.ipynb)
 
 I trained a Prophet model on January 2019, May 2026 monthly GMV and forecasted the next six months.
 
