@@ -137,8 +137,7 @@ This milestone analyzes whether first-time buyers return in the following months
 
 The business has a retention problem, especially after the first purchase. Growth can continue through acquisition, but long-term efficiency will be weak if first-time buyers do not return. CRM, post-purchase communication, reorder reminders, and personalized vouchers should become business priorities.
 
-![Cohort_Retention_Analysis](assets/milestone_2.pgn)
-
+![Cohort_Retention_Analysis](assets/milestone_2.png)
 
 ---
 
