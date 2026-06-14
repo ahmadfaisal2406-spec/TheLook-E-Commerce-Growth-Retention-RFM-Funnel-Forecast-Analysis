@@ -1,397 +1,267 @@
-# 📦 TheLook E-Commerce: Growth, Retention, Funnel, RFM & Forecast Analysis
+# TheLook E-Commerce Analytics — Growth, Retention, Funnel, RFM & Forecasting
 
-> Growth Analysis · Customer Retention · New vs Returning Buyer · Category Performance · RFM Segmentation · Conversion Funnel · GMV Forecasting · Business Insight
+I built this project to practice the full data analyst workflow on a real e-commerce dataset. Not just writing SQL queries, but actually thinking through what the numbers mean and what a business should do about it.
 
-## Project Overview
+The dataset is TheLook — a simulated e-commerce store available as a BigQuery public dataset. I ran everything from BigQuery SQL through Python forecasting and ended up building a Looker Studio dashboard to tie it all together.
 
-This project is an end-to-end e-commerce analytics case study using the Google BigQuery public dataset `bigquery-public-data.thelook_ecommerce`.
+**→ [Live Dashboard](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)**
 
-The analysis simulates how a marketplace data analyst investigates business growth, customer retention, product category performance, buyer behavior, conversion funnel leakage, customer segmentation, and GMV forecasting.
+---
 
-The project covers the full analytics workflow, starting from SQL-based data extraction in BigQuery, cohort retention analysis, category-level performance analysis, new vs returning buyer analysis, RFM customer segmentation, funnel analysis, Python-based time-series forecasting, and executive dashboard storytelling in Looker Studio.
+## What I Was Trying to Figure Out
 
-**Live Dashboard:** [View in Looker Studio](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
+These were the actual questions I started with before touching the data:
 
-## Business Questions
+1. Is this business growing consistently, or is it just noisy month-to-month?
+2. What's actually driving GMV growth — more buyers, more orders, or people spending more per order?
+3. How much of GMV comes from new customers vs. people who've bought before?
+4. Which product categories matter most?
+5. Are male and female customers equally valuable to the business?
+6. Do customers come back after their first purchase — and if not, how bad is the leak?
+7. Which types of customers are worth the most?
+8. Where exactly are people dropping off before they buy?
+9. Which traffic sources are actually converting — not just sending traffic?
+10. Where's GMV probably headed over the next six months?
 
-This project answers the following business questions:
+---
 
-1. Is the e-commerce business growing consistently over time?
-2. Is GMV growth driven by more buyers, more orders, or higher order value?
-3. How much GMV comes from new buyers and returning buyers each month?
-4. Which product categories contribute the most to GMV, buyers, and orders?
-5. How balanced is customer contribution by gender?
-6. How strong is customer retention after the first purchase?
-7. Which customer segments have the highest business value based on RFM?
-8. Where do users drop off the most in the product-to-purchase funnel?
-9. Which traffic sources generate stronger funnel performance?
-10. How much GMV can be expected in the next six months based on historical trends?
+## Stack
 
-## Tools & Tech Stack
+| Tool | What I used it for |
+|---|---|
+| Google BigQuery | Querying and aggregating transaction + event data |
+| SQL | Growth metrics, cohort analysis, funnel logic, RFM scoring |
+| Python / Google Colab | Time-series forecasting |
+| Prophet | Monthly GMV forecasting with seasonality |
+| Looker Studio | Dashboard for visualization and storytelling |
 
-| Tool                  | Usage                                                                                                      |
-| --------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Google BigQuery       | Querying and aggregating large-scale e-commerce data                                                       |
-| SQL                   | Growth metrics, cohort retention, funnel analysis, category analysis, buyer segmentation, RFM segmentation |
-| Python / Google Colab | Time-series forecasting and model evaluation                                                               |
-| Prophet               | Monthly GMV forecasting                                                                                    |
-| Looker Studio         | Executive dashboard and stakeholder communication                                                          |
+---
 
 ## Dataset
 
-| Item                       | Description                                              |
-| -------------------------- | -------------------------------------------------------- |
-| Source                     | `bigquery-public-data.thelook_ecommerce`                 |
-| Platform                   | Google BigQuery Public Dataset                           |
-| Data Period                | January 2019 – May 2026 for complete historical analysis |
-| Main Tables                | `order_items`, `orders`, `events`                        |
-| Optional Enrichment Tables | `products`, `users`                                      |
-| Data Type                  | Simulated e-commerce transaction and clickstream data    |
+| | |
+|---|---|
+| Source | `bigquery-public-data.thelook_ecommerce` |
+| Period | January 2019 – May 2026 |
+| Core tables | `order_items`, `orders`, `events` |
+| Supporting tables | `products`, `users` |
+| Type | Simulated e-commerce transaction and clickstream data |
 
-## Important Data Note
+One thing worth flagging upfront: **June 2026 data is incomplete** — the extraction happened when the month was only 6 days old, so there's a visible drop at the end of every time-series chart. That's not a real business decline. Everything I conclude is based on May 2026 as the most recent full month.
 
-The sharp decline at the far right of the dashboard chart in June 2026 should be treated as data noise. June 2026 only contains partial-month data because the month had only run for six days at the time of extraction.
+---
 
-Therefore, the latest complete business performance should be evaluated using May 2026, not June 2026. Based on the dashboard, May 2026 recorded the strongest full-month performance in the historical period.
+## Quick KPI Snapshot
 
-## Executive KPI Summary
-
-| KPI                         |  Value |
-| --------------------------- | -----: |
-| Peak Monthly GMV            | 467.2K |
-| Peak Monthly Buyers         |  5,057 |
-| Average Order Value         |  83.95 |
-| Month-1 Retention Rate      |  1.30% |
+| KPI | Value |
+|---|---:|
+| Peak Monthly GMV | $467,200 |
+| Peak Monthly Buyers | 5,057 |
+| Average Order Value | $83.95 |
+| Month-1 Retention Rate | 1.30% |
 | Cart-to-Purchase Conversion | 26.65% |
-| Average Forecast GMV        | 355.8K |
-| Peak Forecast GMV           | 376.9K |
+| Avg Forecast GMV (Jun–Nov 2026) | $355,800 |
+| Peak Forecast GMV | $376,900 |
 
-## Metric Definitions
+The two numbers that really stuck with me: **$467K peak GMV** and **1.30% Month-1 retention**. The business knows how to get customers. It just struggles to keep them.
 
-| Metric            | Definition                                                                            |
-| ----------------- | ------------------------------------------------------------------------------------- |
-| GMV Proxy         | Total `sale_price` from valid order items, excluding `Cancelled` and `Returned` items |
-| AOV               | GMV divided by number of unique orders                                                |
-| Unique Buyers     | Number of distinct users with valid transactions                                      |
-| Unique Orders     | Number of distinct valid orders                                                       |
-| MoM Growth        | Month-over-month GMV percentage change                                                |
-| Cohort Month      | User's first valid purchase month                                                     |
-| Retention Rate    | Percentage of users from a cohort who made another valid purchase in later months     |
-| New Buyer         | Buyer whose first purchase occurred in the same month as the transaction month        |
-| Returning Buyer   | Buyer who had already purchased before the transaction month                          |
-| RFM               | Customer segmentation method based on Recency, Frequency, and Monetary value          |
-| Funnel Conversion | Percentage of sessions moving from product page to cart and purchase                  |
-| Drop-off Rate     | Percentage of sessions lost between funnel stages                                     |
-| Forecast GMV      | Predicted monthly GMV based on historical GMV trend and seasonality                   |
+---
 
-Important note: because this dataset does not include voucher cost, shipping fee, payment fee, seller commission, platform subsidy, advertising spend, and contribution margin, GMV in this project should be interpreted as a net merchandise sales proxy, not full marketplace profitability.
+## A Note on What GMV Actually Means Here
 
-## Milestone 1: Business Growth Analysis
+Because the dataset doesn't include shipping costs, voucher costs, seller commissions, advertising spend, or platform fees — the GMV figures here are basically **total valid sales revenue**, not marketplace profit. I excluded cancelled and returned orders. AOV is just GMV divided by order count.
 
-**SQL Files:**
+| Metric | How I defined it |
+|---|---|
+| GMV | Total `sale_price` from non-cancelled, non-returned orders |
+| AOV | GMV ÷ unique orders |
+| New Buyer | First purchase happened this month |
+| Returning Buyer | Had at least one prior purchase before this month |
+| Cohort | Grouped by month of first purchase |
+| Retention Rate | % of a cohort who purchased again in a later month |
+| Funnel Conversion | % of sessions reaching each stage in sequence |
 
-* [`sql/milestone1_business_growth.sql`](sql/milestone1_business_growth.sql)
+---
 
-### What Was Analyzed
+## Part 1 — Is the Business Growing?
 
-This milestone analyzes monthly GMV, unique buyers, unique orders, average order value, GMV per buyer, and month-over-month growth.
+**`sql/milestone1_business_growth.sql`**
 
-### Key Findings
+Short answer: yes. GMV trended upward from 2019 through May 2026, with May 2026 being the strongest full month on record.
 
-* GMV showed strong long-term growth from 2019 to 2026.
-* The latest complete month, May 2026, recorded the strongest full-month performance.
-* AOV remained relatively stable around the $80 range.
-* GMV growth was mainly driven by higher buyer and order volume, not by a major increase in basket size.
-* June 2026 should not be interpreted as a real business decline because it only contains partial-month data.
+But what's more interesting is *how* it grew. Average Order Value barely moved — it stayed around **$80–84 the entire time**. So the growth wasn't because customers started spending more per order. It was almost entirely because there were **more customers and more orders**. The basket size didn't change. The business just got more traffic through the door.
 
-### Business Interpretation
-
-The business shows a strong acquisition-driven growth pattern. More customers and more orders are the main growth drivers. However, stable AOV means the company still has room to improve revenue quality through bundling, cross-selling, free shipping thresholds, and personalized recommendations.
+That's not a bad thing, but it does suggest there's an untapped lever here. If you could nudge AOV up even slightly — through bundling, free shipping thresholds, or recommendations — the revenue impact would compound across a growing buyer base.
 
 ![Business Growth Analysis](assets/growth_gmv.png)
-
 ![MoM GMV Growth](assets/mom_gmv_growth.png)
 
 ---
 
-## Milestone 2: Cohort Retention Analysis
+## Part 2 — Do Customers Actually Come Back?
 
-**SQL Files:**
+**`sql/milestone1_cohort_retention.sql`**
 
-* [`sql/milestone1_cohort_retention.sql`](sql/milestone1_cohort_retention.sql)
+This one was a bit uncomfortable to look at.
 
-### What Was Analyzed
+Month-1 retention sits at **1.30%**. Which means if you take a group of customers who bought for the first time in any given month, only about 1 in 77 of them comes back the following month. The other 98–99 are gone.
 
-This milestone analyzes whether first-time buyers return in the following months. Users are grouped by their first purchase month, then tracked across later months.
+There is a silver lining: among the small slice that does return, repeat purchase behavior does persist into later months. So the platform isn't fundamentally broken — there's just a huge drop-off right after the first purchase that nobody seems to be catching.
 
-### Key Findings
+At 1.30%, the business is essentially running an acquisition-only model. Which works while acquisition scales, but gets expensive and fragile over time. Post-purchase CRM — even something simple like a Day 3 recommendation email and a Day 7 voucher — would likely move this number meaningfully.
 
-* Month-1 retention is very low, around 1.30%.
-* Around 92–98% of users do not return in Month 1.
-* A small retained user group continues to show repeat purchase behavior in later months.
-* This indicates that the platform has repeat-purchase potential, but early lifecycle activation is weak.
+**Goal:** Get Month-1 retention from 1.30% to at least 5% within 3 months of launching any structured follow-up program.
 
-### Business Interpretation
-
-The business has a retention problem, especially after the first purchase. Growth can continue through acquisition, but long-term efficiency will be weak if first-time buyers do not return. CRM, post-purchase communication, reorder reminders, and personalized vouchers should become business priorities.
-
-![Cohort_Retention_Analysis](assets/milestone_2.png)
+![Cohort Retention Analysis](assets/milestone_2.png)
 
 ---
 
-## Milestone 3: Category and Gender Performance Analysis
+## Part 3 — Which Categories and Genders Are Driving Performance?
 
-**SQL Files:**
+**`sql/milestone4_category_gmv_aov.sql`**
 
-* [`sql/milestone4_category_gmv_aov.sql`](sql/milestone4_category_gmv_aov.sql)
+Not all categories behave the same way, and I think that matters a lot for how the business should prioritize:
 
-### What Was Analyzed
+- **Outerwear & Coats** — highest total GMV. High-ticket items, probably lower purchase frequency
+- **Jeans** — strong on both GMV and buyer count. A reliable volume-and-value driver
+- **Intimates** — led the leaderboard on total order count. High frequency, probably lower AOV per order
 
-This milestone analyzes product category performance based on total GMV, total buyers, and total orders. It also compares GMV, buyer count, and order contribution by gender.
+Gender split was actually pretty balanced in terms of buyers and orders. There was a small GMV gap, but nothing dramatic. The platform isn't skewed toward one gender — which is useful to know if you're thinking about where to invest marketing.
 
-### Key Findings
+The bigger takeaway here is that different categories need different strategies. Outerwear probably needs premium positioning and margin focus. Intimates is a repeat-purchase engine that should be pushed toward subscriptions or loyalty mechanics.
 
-* Outerwear & Coats generated the highest total GMV.
-* Jeans appeared as one of the strongest categories across GMV and buyer contribution.
-* Intimates contributed the highest total order volume.
-* Gender contribution was relatively balanced by buyer count and order count.
-* GMV contribution showed a slight difference between men and women, but the gap was not extreme.
-
-### Business Interpretation
-
-Different categories play different business roles. Outerwear & Coats contributes strong GMV, while Intimates and Jeans show strong buyer and order volume. High-GMV categories should be optimized for margin and premium positioning. High-volume categories should be optimized for repeat purchase and bundling.
-
-![Category and Gender Performance Analysis](assets/milestone_3.png)
+![Category and Gender Analysis](assets/milestone_3.png)
 
 ---
 
-## Milestone 4: New vs Returning Buyer GMV Contribution
+## Part 4 — New Buyers vs. Returning Buyers
 
-**SQL Files:**
+**`sql/milestone4_new_vs_returning_buyer.sql`**
 
-* [`sql/milestone4_new_vs_returning_buyer.sql`](sql/milestone4_new_vs_returning_buyer.sql)
+Early in the data, new buyers dominated GMV almost entirely. Over time, returning buyer contribution grew — which is a good sign, it means a portion of the base is actually sticking around.
 
-### What Was Analyzed
+But this doesn't resolve the retention problem from Part 2. The returning buyers that exist are probably a surviving subset of a much larger original cohort. The majority of first-time buyers still never come back.
 
-This milestone compares monthly GMV contribution from new buyers and returning buyers.
+What this tells me is that the loyalty loop *can* exist — it just only activates for a small slice of customers. The question is whether you can widen that funnel. A structured first-time buyer journey (welcome → cross-sell → discount → reminder) is the most direct way to test it.
 
-A buyer is classified as a New Buyer when the transaction month is the same as the user's first purchase month. A buyer is classified as a Returning Buyer when the user had already purchased before the transaction month.
-
-### Key Metrics
-
-| Metric                     | Description                                                     |
-| -------------------------- | --------------------------------------------------------------- |
-| Unique Buyers              | Number of distinct buyers by month and buyer type               |
-| Total Orders               | Number of unique orders by month and buyer type                 |
-| Total GMV                  | Total valid sales value                                         |
-| Average Order Value        | GMV divided by total orders                                     |
-| GMV per Buyer              | GMV divided by unique buyers                                    |
-| Monthly GMV Contribution % | Percentage contribution of each buyer type to total monthly GMV |
-
-### Key Findings
-
-* New buyers contributed a large share of GMV in earlier periods.
-* Returning buyer contribution increased over time.
-* The growing returning buyer share suggests that part of the customer base started to show repeat purchase behavior.
-* However, the low Month-1 retention rate shows that the majority of first-time buyers still do not return quickly.
-
-### Business Interpretation
-
-The business still depends heavily on new buyer acquisition, but returning buyers are becoming more relevant to GMV contribution. This is a positive sign, but it does not remove the retention issue. The company should improve onboarding and post-purchase engagement to convert more new buyers into repeat buyers.
-
-![New vs Returning Buyer GMV Share](assets/new_vs_returning_buyer.png)
+![New vs Returning Buyer](assets/new_vs_returning_buyer.png)
 
 ---
 
-## Milestone 5: RFM Customer Segmentation
+## Part 5 — Which Customers Are Worth the Most? (RFM)
 
-**SQL Files:**
+**`sql/milestone4_rfm_customer_segmentation.sql`**
 
-* [`sql/milestone4_rfm_customer_segmentation.sql`](sql/milestone4_rfm_customer_segmentation.sql)
+I segmented customers using RFM — Recency, Frequency, and Monetary value — into seven buckets:
 
-### What Was Analyzed
+| Segment | Who they are |
+|---|---|
+| Champions | Most recent, most frequent, highest spend |
+| Loyal Customers | Active buyers with solid purchase history |
+| New / Promising | Recent first-timers with potential |
+| Potential Loyalists | Showing early repeat behavior |
+| At Risk | Used to be active, gone quiet recently |
+| Dormant | Low frequency, haven't bought in a while |
+| Regular Customers | Middle-of-the-road, don't fit a specific pattern |
 
-This milestone segments customers using RFM analysis:
+The biggest segment by count was **Dormant**. Which means the majority of the customer base has already disengaged.
 
-* Recency: how recently a customer purchased.
-* Frequency: how often a customer purchased.
-* Monetary: how much a customer spent.
+Champions and Potential Loyalists were much smaller groups but generated disproportionately high spend. That gap between headcount and revenue contribution is exactly why you can't treat all customers the same in CRM.
 
-Customers are grouped into seven segments:
+My take on how to approach each:
+- **Champions** → VIP perks, early access, personal treatment
+- **Potential Loyalists** → Personalized recs, second-purchase nudges
+- **At Risk** → Reactivation offers with urgency
+- **Dormant** → Low-cost automated flows only. The ROI of heavy investment here is low
 
-| Segment             | Description                                                   |
-| ------------------- | ------------------------------------------------------------- |
-| Champions           | Best customers. Recent, frequent, and high-value buyers       |
-| Loyal Customers     | Active customers with relatively frequent purchases           |
-| New / Promising     | Recent buyers with potential but still low frequency          |
-| Potential Loyalists | Customers who show early signs of loyalty                     |
-| At Risk             | Previously frequent buyers who have not purchased recently    |
-| Dormant             | Inactive customers with low purchase frequency                |
-| Regular Customers   | Customers who do not fall into the special segment categories |
-
-### Key Findings
-
-* Dormant customers formed the largest customer group.
-* Champions and Potential Loyalists contributed high monetary value.
-* Some segments with smaller customer counts produced stronger spending contribution.
-* This shows that customer count and revenue contribution are not always proportional.
-
-### Business Interpretation
-
-The company should not treat all customers equally. Champions should receive loyalty rewards and exclusive offers. Potential Loyalists should receive personalized recommendations and repeat-purchase incentives. At Risk customers should receive reactivation campaigns. Dormant customers should be handled through low-cost campaigns because their conversion probability is likely lower.
-
-![RFM Customer Segmentation](assets/rfm_segmentation.png)
+![RFM Segmentation](assets/rfm_segmentation.png)
 
 ---
 
-## Milestone 6: Strict Session-Level Conversion Funnel
+## Part 6 — Where Are Users Dropping Off?
 
-**SQL Files:**
+**`sql/milestone2_funnel_overview.sql`** · **`sql/milestone2_funnel_by_traffic_source.sql`**
 
-* [`sql/milestone2_funnel_overview.sql`](sql/milestone2_funnel_overview.sql)
-* [`sql/milestone2_funnel_by_traffic_source.sql`](sql/milestone2_funnel_by_traffic_source.sql)
+I used strict session-level funnel logic — a session only counts as converted if the user moves through the stages in the right order: product page → add to cart → purchase.
 
-### What Was Analyzed
+| Stage | Sessions | % of Entry | Drop-off |
+|---|---:|---:|---:|
+| Product Page | 681,667 | 100% | — |
+| Add to Cart | 432,099 | 63.4% | 36.6% |
+| Purchase | 181,667 | 26.7% | **58.0%** |
 
-This milestone analyzes clickstream events from product page to add-to-cart and purchase. The funnel logic uses session-level timestamp ordering, so a session is counted as converted only when the user moves through the expected sequence:
+The big leak is between cart and purchase. Nearly **6 in 10 people who added something to their cart didn't complete the purchase**. Product discovery isn't the problem — people are finding things and expressing intent. They're just not finishing at checkout.
 
-`Product Page → Add to Cart → Purchase`
+My guess (and it's an inference, since we don't have detailed checkout event data): friction at checkout. Unexpected shipping costs, too many steps, limited payment options. These are fixable.
 
-### Key Findings
+On traffic sources: Email drove the most sessions, YouTube showed stronger purchase conversion quality. But I can't responsibly say "shift budget to YouTube" without CAC and ad spend data — which this dataset doesn't include.
 
-| Funnel Stage | Sessions | % from Entry Point | Drop-off |
-| ------------ | -------: | -----------------: | -------: |
-| Product Page |  681,667 |            100.00% |        — |
-| Add to Cart  |  432,099 |             63.39% |   36.61% |
-| Purchase     |  181,667 |             26.65% |   57.96% |
+**Goal:** Get cart-to-purchase drop-off below 50%. The fix is checkout UX, not more traffic.
 
-* The largest drop-off occurred from Add to Cart to Purchase.
-* Product discovery was not the biggest issue.
-* The main friction likely happened near checkout.
-* Email contributed the largest session share.
-* YouTube showed strong purchase quality, but the result should still be validated using cost data.
-
-### Business Interpretation
-
-The platform does not only need more traffic. It needs better checkout completion. Marketplace teams should prioritize checkout UX, abandoned cart automation, clearer shipping cost information, payment method availability, and stronger purchase urgency.
-
-Channel recommendations should be treated carefully because this dataset does not include advertising cost, CAC, ROAS, or campaign spend.
-
-![Strict Session-Level Conversion Funnel](assets/funnel_overview.png)
+![Funnel Analysis](assets/funnel_overview.png)
 
 ---
 
-## Milestone 7: GMV Forecasting
+## Part 7 — Where Is GMV Headed?
 
-**Notebook:**
+**`notebooks/milestone3_gmv_forecasting.ipynb`**
 
-* [`notebooks/milestone3_gmv_forecasting.ipynb`](notebooks/milestone3_gmv_forecasting.ipynb)
+I trained a Prophet model on January 2019 – May 2026 monthly GMV and forecasted the next six months.
 
-### What Was Analyzed
+| Month | Forecast | Lower | Upper |
+|---|---:|---:|---:|
+| Jun 2026 | $323,322 | $301,414 | $343,578 |
+| Jul 2026 | $331,799 | $309,853 | $353,218 |
+| Aug 2026 | $346,765 | $326,753 | $368,871 |
+| Sep 2026 | $354,523 | $332,077 | $373,626 |
+| Oct 2026 | $369,132 | $347,850 | $390,936 |
+| Nov 2026 | $376,897 | $353,809 | $397,807 |
 
-Monthly GMV proxy was forecasted using Prophet. The model projects the next six months of GMV and decomposes the time series into trend and seasonality components.
+The trend continues upward — peaking around $377K in November. That's about 80% of the May 2026 actual peak, which suggests the high months are still seasonal exceptions, not the new floor.
 
-### Model Setup
+One thing I want to be honest about: a tight confidence interval doesn't automatically mean the model is accurate. The notebook includes backtesting against a naive baseline using MAE, RMSE, and MAPE — because a forecast is only useful if you know how wrong it tends to be.
 
-| Item                | Value                      |
-| ------------------- | -------------------------- |
-| Model               | Prophet                    |
-| Frequency           | Monthly                    |
-| Training Data       | January 2019 – May 2026    |
-| Forecast Horizon    | June 2026 – November 2026  |
-| Seasonality         | Yearly seasonality enabled |
-| Confidence Interval | 95%                        |
+This should be read as a directional estimate. It doesn't know about upcoming campaigns, pricing changes, stock issues, or macroeconomic shifts.
 
-### Forecast Result
+![GMV Forecast](assets/forecasting.png)
 
-| Month    | Forecast GMV | Lower Bound | Upper Bound |
-| -------- | -----------: | ----------: | ----------: |
-| Jun 2026 |     $323,322 |    $301,414 |    $343,578 |
-| Jul 2026 |     $331,799 |    $309,853 |    $353,218 |
-| Aug 2026 |     $346,765 |    $326,753 |    $368,871 |
-| Sep 2026 |     $354,523 |    $332,077 |    $373,626 |
-| Oct 2026 |     $369,132 |    $347,850 |    $390,936 |
-| Nov 2026 |     $376,897 |    $353,809 |    $397,807 |
+---
 
-### Business Interpretation
+## What I'd Actually Recommend (If This Were a Real Business)
 
-The forecast suggests continued GMV growth in the next six months. However, the forecast should be interpreted as a directional estimate, not as a guaranteed business outcome. The model does not include marketing spend, pricing changes, stock availability, campaign events, macroeconomic factors, or operational constraints.
+**1. Fix retention before scaling acquisition**
+98% of first-time buyers don't come back the next month. A basic post-purchase sequence — Day 1 confirmation with recs, Day 7 voucher, Day 14 reminder — would likely move this more than any amount of new ad spend.
 
-![GMV Forecasting](assets/forecasting.png)
+**2. Fix checkout, not traffic**
+The funnel tells you where the problem is: not at product discovery, but at purchase completion. Guest checkout, visible shipping costs, one-click payment for returning users, 30-minute cart abandonment email. These are high-impact, relatively low-cost fixes.
 
-### Model Reliability Note
+**3. Build a first-time buyer journey**
+New buyer GMV share is large. Returning buyer GMV is growing but still small. There's a clear opportunity to build a structured lifecycle — welcome, educate, incentivize, remind — to close that gap faster.
 
-A narrow confidence interval does not automatically prove that a model is reliable. To make the forecasting work stronger, the notebook should include backtesting using MAE, RMSE, and MAPE, then compare Prophet against a naive or seasonal naive baseline.
+**4. Treat customer segments differently**
+Champions and Potential Loyalists punch above their weight. Dormant customers are unlikely to respond to heavy investment. RFM exists exactly so you can stop wasting budget on the wrong segments.
 
-## Executive Dashboard
+**5. Stop treating all categories the same**
+Outerwear needs premium positioning. Intimates needs repeat-purchase mechanics. Category strategy should follow the data, not a one-size-fits-all playbook.
 
-**Live Dashboard:** [View in Looker Studio](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
+**6. Don't reallocate channel budget without cost data**
+YouTube's conversion rate looks good in the funnel. But conversion rate alone doesn't make a channel worth more investment. You need CAC, ROAS, and LTV before making that call.
 
-The dashboard is designed for non-technical stakeholders. It summarizes technical analysis into business-facing metrics, visual trends, and action-oriented recommendations.
+---
 
-| Section                 | Content                                                         |
-| ----------------------- | --------------------------------------------------------------- |
-| Growth Overview         | Monthly GMV, unique orders, buyer growth, MoM growth, AOV trend |
-| Category Performance    | Top categories by GMV, buyers, and orders                       |
-| Gender Analysis         | GMV, buyer, and order contribution by gender                    |
-| Retention Analysis      | Cohort retention heatmap and retention curve                    |
-| New vs Returning Buyer  | Monthly GMV share from new and returning buyers                 |
-| RFM Segmentation        | Customer segment size and spending contribution                 |
-| Funnel Analysis         | Product page, add-to-cart, and purchase conversion              |
-| Traffic Source Analysis | Funnel breakdown and session share by source                    |
-| Forecasting             | Actual vs forecast GMV, forecast table, trend and seasonality   |
+## What This Analysis Can't Tell You
 
-## Strategic Recommendations
+A few honest caveats:
 
-### 1. Improve First-Time Buyer Retention
+The dataset is simulated — so none of these numbers reflect the actual performance of any real marketplace.
 
-Run a post-purchase CRM sequence for first-time buyers within 24 hours after their first transaction. The sequence can include order status updates, personalized product recommendations, reorder reminders, and limited-time vouchers.
+It's also missing a lot of cost-side context: no voucher costs, no shipping fees, no seller commissions, no ad spend, no CAC, no product margin. So GMV here is purely a revenue proxy — you can't infer profitability from it.
 
-Target KPI: increase Month-1 retention from 1.30% to at least 5% in the next three months.
+The checkout drop-off finding is an inference. I can see that people leave between cart and purchase, but the dataset doesn't have detailed checkout step events (payment page, shipping selection, voucher errors). The *cause* of the drop-off is educated speculation, not proven by the data.
 
-### 2. Reduce Cart-to-Purchase Drop-off
+RFM labels are relative scores from this dataset — not permanent customer identities. They're useful for prioritization, not as fixed truths.
 
-Prioritize checkout improvements such as guest checkout, clearer shipping fee visibility, faster payment options, easier voucher application, and one-click payment for returning users.
-
-Target KPI: reduce cart-to-purchase drop-off from 57.96% to below 50%.
-
-### 3. Convert New Buyers into Returning Buyers
-
-Create a structured first-time buyer lifecycle program. The program should include welcome messages, product education, cross-sell recommendations, second-purchase vouchers, and reminder campaigns.
-
-Target KPI: increase returning buyer GMV contribution and reduce dependence on new buyer acquisition.
-
-### 4. Prioritize High-Value Customer Segments
-
-Use RFM segmentation to prioritize CRM campaigns. Champions should receive VIP rewards. Potential Loyalists should receive personalized recommendations. At Risk customers should receive reactivation campaigns. Dormant customers should receive low-cost win-back campaigns.
-
-Target KPI: increase GMV from Champions and Potential Loyalists while reducing revenue loss from At Risk customers.
-
-### 5. Optimize Product Category Strategy
-
-Use category-level performance to separate high-GMV categories from high-volume categories. High-GMV categories should support margin growth. High-volume categories should support repeat purchase, bundling, and retention programs.
-
-Target KPI: increase AOV and repeat purchase rate in top categories.
-
-### 6. Validate Channel Reallocation with Cost Data
-
-Email and Adwords generate large session volume, while YouTube shows strong funnel quality. However, final budget decisions require CAC, ROAS, ad spend, and contribution margin data.
-
-Target KPI: evaluate each channel using conversion rate, CAC, ROAS, GMV per session, and repeat purchase rate.
-
-## Limitations
-
-This project uses a simulated public dataset, so the results do not represent the real performance of Shopee, Lazada, Tokopedia, or any specific marketplace.
-
-The dataset does not include important commercial variables such as voucher cost, shipping fee, platform subsidy, seller commission, payment fee, advertising cost, CAC, ROAS, stock availability, product margin, and contribution margin. Therefore, the analysis focuses on transaction behavior and conversion patterns, not profitability.
-
-Checkout friction is inferred from funnel drop-off. Since the dataset does not include detailed checkout step events such as payment page, shipping selection, voucher application, or payment failure, the exact cause of checkout drop-off cannot be proven from this dataset alone.
-
-New buyer and returning buyer classification depends on the available transaction history. If earlier customer history is missing from the dataset, some returning buyers may be misclassified as new buyers.
-
-RFM segmentation is based on relative scoring using the available dataset. Segment labels should be used for business prioritization, not as fixed customer identities.
-
-Forecasting results are based on historical GMV patterns. The model does not include external business drivers such as campaign calendars, pricing changes, seasonality from real holidays, competitor activity, or marketing budget.
+---
 
 ## Repository Structure
 
@@ -455,23 +325,18 @@ TheLook-E-Commerce-Growth-Retention-RFM-Funnel-Forecast-Analysis/
     └── organize_repo.sh
 ```
 
+## How to Run It
 
-## How to Reproduce
+1. Open BigQuery and run the SQL files in `sql/` in order
+2. Export results as CSV into `data/`
+3. Open the forecasting notebook in Google Colab and run it end to end
+4. Connect the CSVs to Looker Studio and build the dashboard sections
+5. Export dashboard screenshots into `assets/`
 
-1. Open Google BigQuery.
-2. Run SQL files from the `sql/` folder in order.
-3. Export query results into the `data/` folder.
-4. Run the forecasting notebook or the evaluation template in Google Colab.
-5. Connect cleaned CSV outputs to Looker Studio.
-6. Build dashboard sections for growth, retention, category, gender, new vs returning buyer, RFM, funnel, and forecast.
-7. Export dashboard screenshots and update the `assets/` folder.
-8. Update README visuals and metric values if the dashboard data changes.
+---
 
-## Author
-
-**Achmad Faishal**
-Program Studi Ekonomi Pembangunan — UPN "Veteran" Yogyakarta
+**Achmad Faishal**  
+Ekonomi Pembangunan — FEB UPN "Veteran" Yogyakarta
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue)](https://www.linkedin.com/in/achmad-faishal-062313274/)
-[![Looker Studio](https://img.shields.io/badge/Dashboard-Live-green)](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
-
+[![Dashboard](https://img.shields.io/badge/Dashboard-Live-green)](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)
