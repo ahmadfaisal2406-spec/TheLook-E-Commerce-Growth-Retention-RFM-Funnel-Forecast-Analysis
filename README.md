@@ -2,7 +2,7 @@
 
 I built this project to practice the full data analyst workflow on a real e-commerce dataset. Not just writing SQL queries, but actually thinking through what the numbers mean and what a business should do about it.
 
-The dataset is TheLook — a simulated e-commerce store available as a BigQuery public dataset. I ran everything from BigQuery SQL through Python forecasting and ended up building a Looker Studio dashboard to tie it all together.
+The dataset is TheLook a simulated e-commerce store available as a BigQuery public dataset. I ran everything from BigQuery SQL through Python forecasting and ended up building a Looker Studio dashboard to tie it all together.
 
 **→ [Live Dashboard](https://datastudio.google.com/reporting/4305cf69-83f3-483c-b8dc-3e02a43edca3)**
 
@@ -17,10 +17,10 @@ These were the actual questions I started with before touching the data:
 3. How much of GMV comes from new customers vs. people who've bought before?
 4. Which product categories matter most?
 5. Are male and female customers equally valuable to the business?
-6. Do customers come back after their first purchase — and if not, how bad is the leak?
+6. Do customers come back after their first purchase and if not, how bad is the leak?
 7. Which types of customers are worth the most?
 8. Where exactly are people dropping off before they buy?
-9. Which traffic sources are actually converting — not just sending traffic?
+9. Which traffic sources are actually converting not just sending traffic?
 10. Where's GMV probably headed over the next six months?
 
 ---
