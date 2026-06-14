@@ -2,7 +2,7 @@
 
 > Growth Analysis · Customer Retention · New vs Returning Buyer · Category Performance · RFM Segmentation · Conversion Funnel · GMV Forecasting · Business Insight
 
-![Dashboard Preview](assets/dashboard_preview.png)
+![Dashboard Preview](https://github.com/ahmadfaisal2406-spec/TheLook-E-Commerce-Growth-Retention-RFM-Funnel-Forecast-Analysis/blob/main/The_Look_E-Commerce%20Full.pdf)
 
 ## Project Overview
 
