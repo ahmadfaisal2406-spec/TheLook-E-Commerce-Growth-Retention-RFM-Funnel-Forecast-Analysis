@@ -98,7 +98,7 @@ That's not a bad thing, but it does suggest there's an untapped lever here. If y
 
 ---
 
-## Part 2 — Do Customers Actually Come Back?
+## Part 2: Do Customers Actually Come Back?
 
 **`sql/milestone1_cohort_retention.sql`**
 
