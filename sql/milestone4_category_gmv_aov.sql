@@ -1,4 +1,4 @@
-```sql
+
 -- ============================================================
 -- MILESTONE 4.1: Category-level GMV and AOV Analysis
 -- Dataset: bigquery-public-data.thelook_ecommerce
@@ -68,6 +68,7 @@
 -- Bulan berjalan belum lengkap, sehingga bisa menimbulkan bias.
 -- Contoh: jika hari ini baru tanggal 6, GMV bulan ini pasti terlihat turun,
 -- padahal penurunannya hanya karena data belum penuh.
+
 WITH valid_order_items AS (
   SELECT
     oi.order_id,
@@ -124,6 +125,7 @@ WITH valid_order_items AS (
 -- Metrik ini menunjukkan rata-rata kontribusi GMV per pembeli.
 -- Ini membantu membedakan kategori yang ramai pembeli
 -- dengan kategori yang memiliki pembeli bernilai tinggi.
+  
 category_summary AS (
   SELECT
     COALESCE(p.category, 'Unknown') AS category,
@@ -208,6 +210,7 @@ category_summary AS (
 -- Output diurutkan dari kategori dengan GMV terbesar.
 -- Untuk analisis bisnis, kategori dengan kontribusi GMV terbesar
 -- biasanya menjadi prioritas pertama untuk dibaca.
+  
 SELECT
   category,
   department,
